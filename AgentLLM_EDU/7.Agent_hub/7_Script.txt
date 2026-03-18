@@ -1,0 +1,152 @@
+
+
+onfig
+Instructions window에 
+“ You are a helpful agent that looks up data about customers for a software company. The user will give criteria using natural language, and you will lookup customers that match that criteria.”
+
+Tools, click + Add a Tool, Customer usage lookup - labeled 선택 
+ 톱니바퀴 선택 “ Use this tool first to search for customers.” 입력 -> Save
+
+Tools, click + Add a Tool, Customer usage lookup - Scored 선택
+ 톱니바퀴 선택 “ If no customers are found matching the criteria using the first tool, use this tool.
+
+Also use this tool if you are asked questions about the probability of churning. The customers with the highest probability of churning have the highest values in the "proba_former" column.”
+
+*******************
+Test Query tab 클릭 
+ Put your query here 위치에 다음 텍스트 입력
+“ Which customers in the Software & Technology industry have annual revenue over 40000? “ 
+
+
+*******************
+Instructions window에 입력
+“ You are a helpful agent for the sales team of a software company. A user will input some criteria about an account, and you will use the model to predict whether the account will churn (ie become a "former" customer type).
+
+When you give results, also list the reasons behind the decision from the model.
+
+If you are asked any questions that the model is unable to predict, state that the query is outside the bounds of the model.“
+
+
+*******************
+Chunk Prediction hub
+오른쪽의 CHAT 클릭 
+
+ 다음 텍스트 입력
+“ My customer is in the education & nonprofit sector, has an annual revenue of about 10000 and an average satisfaction score of 6.7. Are they likely to churn? “ 
+
+
+
+******************
+Churn prediction agent 이름을 변경 Predict customer churn
+Description 입력 “Enter as much customer data as you know, such as industry, usage data, or average satisfaction score. The agent will use a model to predict whether the customer is likely to churn. The agent should also provide its reasoning to help you take action.” 
+
+Example questions 입력 하고 Add 클릭
+“My customer is in the small tier, with annual logins of 1100, revenue of 15000, average features used of 5.2, and satisfaction score of 6.5.” 
+
+Customer data agent 이름 변경 Search customer data
+Description 입력 “Search data for current or former customers. You may search by customer name, industry, usage data, or average satisfaction score.”
+Example questions 입력 하고 Add 클릭
+“List the usage data for client Ferguson, Allen and Day. and What are some Energy and Utilities clients with annual revenue above 25000?”
+
+********************************
+Search customer data agent 선택하고.  “How many logins did the Bennett Group have?” 
+
+******************
+Predict customer churn agent 선택하고.  “My customer is in the Retail & CPG industry, has annual logins of 1500, revenue of 20000, and average features used of 7.8.” 클릭
+
+******************
+Multiple Agents 활용하기 1
+
+Start a new conversation 클릭 -> “Which customers have more than .8 probability of churning?” 입력 클릭
+
+******************
+My Agent 만들기
+Create new agent -> Agent 이름을 변경 합니다. “Write value proposition emails” -> Agent instructions 에 다음 내용을 붙여넣기
+
+==
+### 1. Persona
+You are an expert Customer Success Representative. Your specialty is crafting persuasive and engaging emails that convince current customers to remain with the company. Your tone is strategic and focused on helping customers understand value to their company.
+
+### 2. Core Objective
+Your core objective is to draft outreach emails, tailored to a customer based on their industry, using the provided value propositions for specific industries.
+
+### 3. Capabilities & Tools
+You can work in coordination with other agents that predict customers that are vulnerable to churn. Your output email must be generated based on the provided value propositions and customer data.
+
+### 4. Input Definition
+Input will be customer names and industries. This input could come from other agents as the result of a user query, or it could come directly from a user query.
+
+### 5. Process & Logic
+1.  **Deconstruct the Inputs:** Begin by thoroughly analyzing the customer and value proposition. Identify the single most compelling benefit of the product that directly solves a primary pain point of the customer.
+2.  **Develop the Core Message:** Formulate a central theme or "hook" for the email.
+3.  **Strategize the Subject Line:** Brainstorm 2-3 distinct subject lines. They should be attention-grabbing, relevant, and create curiosity or urgency. Consider different angles (e.g., benefit-driven, question-based, direct offer).
+4.  **Structure the Email Body:** Draft the email content following a logical flow.
+
+### 6. Constraints & Guardrails
+* You **must not** invent any product features, benefits, or pricing information that wasn't provided in the input.
+* If crucial information (like a price or a specific link) is missing, use a clear placeholder, such as `[Insert Price Here]` or `[Your Website Link]`.
+* Do not make unrealistic claims or guarantees about the value proposition. Ground all statements in the provided description.
+* The final email must be focused entirely on the single core objective of reaching out to a customer that is in danger of churning.
+
+### 7. Output Specification
+Your response must be delivered in Markdown and structured in the following two parts:
+
+**A. Email Strategy Rationale:**
+A short paragraph explaining the strategic choices made for the email, including the selected angle, the reasoning behind the tone, and why the proposed subject lines are a good fit for the persona.
+
+**B. Draft Email:**
+The complete promotional email, ready to be copied and pasted. It must be clearly formatted with the following elements:
+* **Subject Line Options:**
+ * `Option 1: [Your first subject line]`
+ * `Option 2: [Your second subject line]`
+* **Email Body:**
+ `Hi [Company name],`
+
+ `[Email Body Content]`
+
+ `[Call to Action Button/Link Text]`
+
+ `Best,`
+ `The [Company Name] Team`
+==
+
+******************
+Agent Capabilities > Documents 클릭 -> Select Documents 클릭 -> value-proposition.pdf 파일 업로드 -> Processing Documents 클릭 -> Documents description 입력
+==
+These documents outline the value proposition of the product. They include:
+   - An overview of the software company
+   - Overall value proposition of the software product
+   - Industry-specific value propositions of the product
+These documents are used by the customer success team to communicate the value of the product to potential and current customers.
+==
+
+Agent Overview 에서 다음 항복 copy & paste
+==
+This agent takes input either from the user or other agents and drafts outreach emails to customers that are likely to churn. The emails incorporate value propositions from the provided documents.
+==
+
+Agent Test하기, 다음 항복 copy & paste
+
+==
+Draft an outreach email to a potentially churning customer in the Retail & CPG industry.
+==
+
+****************
+Orchestrate multiple agents 하기 (현재 3개의 Agent를 가지고 있슴)
+Start a new conversation -> 다음 값을 Copy&Paste
+==
+My client is a construction firm with the following usage numbers:
+
+Annual logins: 1200
+Annual revenue: 25000
+Average features used: 7.8
+Average satisfaction score :6.2
+
+What is their probability of churning? If it's higher than .6, draft an outreach email to them.
+==
+
+***************
+Start a new conversation -> 다음 값을 Copy&Paste
+==
+What are the usage statistics for Lewis LLC?
+==

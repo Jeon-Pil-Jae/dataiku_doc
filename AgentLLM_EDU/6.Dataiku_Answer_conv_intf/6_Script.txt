@@ -1,0 +1,38 @@
+
+
+Conversation History Dataset field:
+Define Name : prompt_history.
+Conversation User Profile Dataset field:
+Defien Name : user_profile.
+
+Retrieval Method.
+
+Customize knowledge bank’s name field:  “Dataiku Knowledge Bank”
+
+Provide any instructions to your LLM when knowledge bank is used에 다음 내용 입력
+   “Please act as a support engineer who would help any users of Dataiku DSS.
+Use the knowledge bank whenever the topic from the prompt is covered by the documents in the knowledge bank.”
+
+Conversation Store
+Positive feedback choices, click + Add an Element three times:
+Complete
+Correct
+Easy to understand
+Negative feedback choices, click + Add an Element four times:
+Incorrect
+Inaccurate
+Does not respect the instructions
+Shocking/Risky
+
+General feedback.
+Define Name : user_feedback.
+
+Interface Customization.
+In the Displayed title field
+Under Example questions, replace the default examples with the following strings:
+==
+What's the LLM mesh?
+How to do Prompt Engineering in Dataiku?
+What's the difference between the Group recipe and the Window recipe in Dataiku?
+==
+

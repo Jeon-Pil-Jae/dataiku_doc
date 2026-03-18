@@ -1,0 +1,72 @@
+
+
+Prompt box 에 다음 사항을 붙여 넣는다. 
+==
+Translate the product reviews into Korean.
+==
+
+Description : Product review
+Column : text
+
+********************
+LLM 연결과 Prompt Recipe 를 사용하여 entities 추출하기
+
+
+Prompt box 에 다음 사항을 붙여 넣는다. 
+
+==
+Extract the key information from the below product reviews in JSON format (no Markdown). Your answer should follow the JSON schema below:
+{
+ "title": "Product review",
+ "description": "A product review",
+ "type": "object",
+ "properties": {
+   "name": {
+     "description": "The name of the product covered in the review. 'Unknown' if it can't be determined",
+     "type": "string"
+   },
+   "summary": {
+     "description": "A summary of the review",
+     "type": "string"
+   },
+   "predicted_sentiment": {
+     "description": "Whether the product review is positive, negative or neutral",
+     "type": "string",
+     "enum": ["positive", "neutral", "negative"],
+   },
+   "advantages": {
+     "description": "Advantages of the products mentioned in the review. Return an empty list if the review doesn't mention an advantage",
+     "type": "array",
+     "items": {
+       "type": "string"
+     }
+   }
+ },
+   "drawbacks": {
+     "description": "Drawbacks of the products mentioned in the review. Return an empty list if the review doesn't mention a drawback",
+     "type": "array",
+     "items": {
+       "type": "string"
+     }
+   }
+ },
+ "required": [ "name", "summary", "sentiment", "advantages", "drawbacks"]
+}
+==
+
+Prompt input 에서 Add input
+Description : Product review
+Column : text
+
+
+***********************
+
+Result validation settings > Expected output format and choose JSON object.
+클릭 Add Key and enter the following keys:
+name, summary, predicted_sentiment, advantages, drawbacks
+
+RUN 실행 -> dataset product_reviews_extracted 클릭
+VAILD 확인 가능
+
+
+

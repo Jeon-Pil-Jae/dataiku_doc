@@ -1,0 +1,95 @@
+
+Prompt 박스에 “Explain here what the model must do” 대신 다음을 복사하고 붙여 넣기
+
+==
+Determine whether each topic of the following list of topics is covered in the financial news article provided.
+
+List of topics: fed and central banks, company and product news, corporate debt and earnings, energy and oil, currencies, gold and metals, IPO, legal and regulation, M&A and investments, markets, politics, stock movement, sports.
+==
+제공된 금융 뉴스 기사에서 다음 주제 목록의 각 주제가 다루어지는지 판단하십시오.
+주제 목록: 연준 및 중앙은행, 기업 및 제품 뉴스, 기업 부채 및 실적, 에너지 및 석유, 통화, 금 및 금속, 기업공개(IPO), 법률 및 규제, 인수합병 및 투자, 시장, 정치, 주가 변동, 스포츠.
+==
+
+Inputs from menu에서 Written test cases 선택 -> Add input에 Headline, Text 각각 입력
+Test cases section, click + Add Test Case 다음을 입력 
+
+Headline: 
+  Manufacturing, vaccine data power stocks higher; U.S. dollar dips
+  U.S. weekly jobless claims up slightly; leading indicator rises
+제조업 및 백신 데이터로 주가 상승; 미국 달러 하락.
+미국 주간 실업수당 청구 건수 소폭 상승; 선행지표 상승.
+
+Text : 
+  Stocks across the globe rose on Wednesday following data pointing to a recovery in manufacturing and on bets for a COVID-19 vaccine, while the risk-on mood pushed the U.S. dollar lower.
+  The number of Americans filing for unemployment benefits rose just marginally last week, suggesting strong job growth in March that should underpin consumer spending.
+
+수요일 전 세계 주식은 제조업 회복을 가리키는 데이터와 COVID-19 백신에 대한 기대감에 힘입어 상승했으며, 위험 선호 분위기로 인해 미국 달러는 하락했다.
+지난주 실업수당을 신청한 미국인의 수는 소폭만 증가하여, 3월의 강력한 일자리 증가를 시사하며 이는 소비자 지출을 뒷받침할 것으로 보인다.
+
+
+************************
+************************
+
+Prompt 박스에 다음행에 다음 내용을 붙여 넣는다. 
+
+==
+Format your response as a JSON object with each topic as the keys, and 0 or 1 as values. Add the "other" key to list potential topics not listed above. Use an array as value. 
+==
+
+Examples 항목에, click + Add Example 하고 다음 항목에 값을 붙여 넣는다.
+Input Headline :
+  Travel stocks soar as encouraging vaccine study lifts Europe
+  Oil climbs 2% on U.S. stock draw but gains capped as OPEC+ set to ease cuts
+Input Text :
+  European stocks closed at over a five-week high on Wednesday, with travel stocks surfing a wave of optimism following reports of progress in developing a COVID-19 vaccine.
+  Oil prices rose 2% on Wednesday, supported by a sharp drop in U.S. crude inventories, but further gains were limited as OPEC and its allies are set to ease supply curbs from August as the global economy gradually recovers from the coronavirus pandemic.
+
+Output 
+{
+"company and product news": 0,
+"corporate debt and earnings": 0,
+"IPO": 0,
+"M&A and investments": 0,
+"stock movement": 1,
+"markets": 1,
+"legal and regulation": 0,
+"politics": 0,
+"currencies": 0,
+"gold and metals": 0,
+"energy and oil": 0,
+"fed and central banks": 0,
+"sports": 0,
+"other": []
+}
+
+{
+"company and product news": 0,
+"corporate debt and earnings": 0,
+"IPO": 0,
+"M&A and investments": 0,
+"stock movement": 0,
+"markets": 0,
+"legal and regulation": 0,
+"politics": 0,
+"currencies": 0,
+"gold and metals": 0,
+"energy and oil": 1,
+"fed and central banks": 0,
+"sports": 0,
+"other": []
+}
+
+Test cases section, click + Add Test Case 다음을 입력 
+
+Headline: 
+  Manufacturing, vaccine data power stocks higher; U.S. dollar dips
+  U.S. weekly jobless claims up slightly; leading indicator rises
+제조업 및 백신 데이터로 주가 상승; 미국 달러 하락.
+미국 주간 실업수당 청구 건수 소폭 상승; 선행지표 상승.
+
+Text : 
+  Stocks across the globe rose on Wednesday following data pointing to a recovery in manufacturing and on bets for a COVID-19 vaccine, while the risk-on mood pushed the U.S. dollar lower.
+  The number of Americans filing for unemployment benefits rose just marginally last week, suggesting strong job growth in March that should underpin consumer spending.
+
+수요일 전 세계 주식은 제조업 회복을 가리키는 데이터와 COVID-19 백신에 대한 기대감에 힘입어 상승했으며, 위험 선호 분위기로 인해 미국 달러는 하락했다.
+지난주 실업수당을 신청한 미국인의 수는 소폭만 증가하여, 3월의 강력한 일자리 증가를 시사하며 이는 소비자 지출을 뒷받침할 것으로 보인다.

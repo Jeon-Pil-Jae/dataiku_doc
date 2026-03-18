@@ -1,0 +1,25 @@
+
+chat field, 다음과 내용을 Copy and paste 하고 비행기 버튼을 누르면 다음 결과를 받을 수 있습니다.
+만들어진 Retrieval of knowledge 외에 상용 LLM을 사용하게 되면 다름 답을 받게 됩니다. 
+
+==
+What percentage of senior analytics and IT leaders cite data quality and usability as their main challenge with data infrastructure?
+Return only a two-digit percentage.
+==
+
+
+*********************************
+
+Managed mode 선택 -> Create 클릭 
+Prompt field에 다음 사항을 입력 합니다. 
+==
+You're an expert in Dataiku and rely on the knowledge from the Dataiku documentation.
+When answering questions, be sure to provide answers that reflect the content of the documentation, but avoid saying things like 'according to the documentation'.
+Instead, subtly mention that the information is based on the Dataiku documentation.
+==
+
+Written test cases 선택 -> Description field에 Question 입력
+==
+What's the difference between the Group and Window recipes?
+==
+
